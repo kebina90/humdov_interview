@@ -3,7 +3,7 @@ from main import app
 from database import engine, Base
 import models
 
-# fresh test database before test run
+
 def setup_module():
     """This runs once before all tests in this module"""
     # Drop all tables and recreate them

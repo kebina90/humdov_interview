@@ -104,3 +104,15 @@ def get_personalized_feed(user_id: int, db: Session = Depends(database.get_db)):
     scored_posts.sort(key=lambda x: (x[1], x[0].id), reverse=True)
     personalized_feed = [post for post, score in scored_posts]
     return personalized_feed
+
+# get all users
+@app.get("/users/", response_model=List[UserResponse])
+def get_all_users(db: Session = Depends(database.get_db)):
+    users = db.query(models.User).all()
+    return users
+
+# get all posts
+@app.get("/posts/", response_model=List[PostResponse])
+def get_all_posts(db: Session = Depends(database.get_db)):
+    posts = db.query(models.Post).all()
+    return posts
