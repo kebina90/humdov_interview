@@ -8,6 +8,7 @@ It uses **content-based filtering** to determine user interests and serve releva
 ## Live Demo
 
 **First, seed the database:**
+
 ```bash
 # macOS/Linux:
 API_URL=https://humdov-interview.onrender.com python seed_data.py
@@ -20,6 +21,7 @@ set API_URL=https://humdov-interview.onrender.com && python seed_data.py
 
 - **Base URL:** [https://humdov-interview.onrender.com](https://humdov-interview.onrender.com)
 - **Interactive Docs (Swagger UI):** [https://humdov-interview.onrender.com/docs](https://humdov-interview.onrender.com/docs)
+```
 
 ---
 
