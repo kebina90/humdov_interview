@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: humdov-interview-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: humdov-db
+          property: connectionString
+
+databases:
+  - name: humdov-db
+    plan: free
+    databaseName: humdov
+    user: humdov_user
