@@ -1,4 +1,3 @@
-````markdown
 # Personalized Feed API
 
 A **FastAPI** service that provides a personalized post feed based on user likes.  
@@ -43,7 +42,7 @@ It uses **content-based filtering** to determine user interests and serve releva
    ```bash
    git clone <your-repo-url>
    cd <repo-name>
-````
+
 
 2. **Set up a virtual environment**:
 
@@ -88,9 +87,9 @@ This creates **3 users** and **10 faith-based posts**, then assigns likes.
 
 **Example users:**
 
-* `grace_believer` → likes: *prayer, faith, worship*
-* `faith_journey` → likes: *bible, sermon, outreach*
-* `hope_in_christ` → likes: *hope, community*
+* `Grace` → likes: *prayer, faith, worship*
+* `John` → likes: *bible, sermon, outreach*
+* `Hope` → likes: *hope, community*
 
 ---
 
