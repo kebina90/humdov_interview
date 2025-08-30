@@ -1,6 +1,7 @@
 import requests
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = os.getenv("API_URL", "http://localhost:8000")
+print(f"Using API URL: {BASE_URL}")
 
 def check_response(response, operation_name):
     if response.status_code >= 200 and response.status_code < 300:

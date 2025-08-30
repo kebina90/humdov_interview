@@ -16,15 +16,76 @@ The API is successfully hosted on Render.com for easy testing:
 
 **Interactive Documentation:** https://humdov-interview.onrender.com/docs
 
-### Quick Testing:
+You're absolutely right! This crucial information should be in the README. Let's add a clear section for Windows users. Here's the updated README section:
+
+## Update Your README.md
+
+Add this section right after the "Quick Testing" part:
+
+```markdown
+### Seeding the Production Database
+
+**For macOS/Linux (Bash):**
 ```bash
-# First, seed the database:
+API_URL=https://humdov-interview.onrender.com python seed_data.py
+```
+
+**For Windows (PowerShell):**
+```powershell
+$env:API_URL="https://humdov-interview.onrender.com"; python seed_data.py
+```
+
+**For Windows (Command Prompt):**
+```cmd
+set API_URL=https://humdov-interview.onrender.com && python seed_data.py
+```
+
+**Alternative: Temporary code change**
+You can also temporarily modify `seed_data.py`:
+```python
+# Change this line:
+BASE_URL = "https://humdov-interview.onrender.com"  # For production
+# Instead of:
+# BASE_URL = "http://localhost:8000"  # For local development
+```
+Then run: `python seed_data.py`
+```
+
+## The updated "Hosted Version" section should look like:
+
+```markdown
+## 🚀 Hosted Version
+
+The API is successfully hosted on Render.com for easy testing:
+
+**Base URL:** https://humdov-interview.onrender.com
+
+**Interactive Documentation:** https://humdov-interview.onrender.com/docs
+
+### Quick Testing:
+
+**First, seed the database:**
+```bash
+# macOS/Linux:
 API_URL=https://humdov-interview.onrender.com python seed_data.py
 
-# Then test personalized feeds:
+# Windows PowerShell:
+$env:API_URL="https://humdov-interview.onrender.com"; python seed_data.py
+
+# Windows CMD:
+set API_URL=https://humdov-interview.onrender.com && python seed_data.py
+```
+
+**Then test personalized feeds:**
+```bash
 curl https://humdov-interview.onrender.com/users/1/feed
-curl https://humdov-interview.onrender.com/users/2/feed
+curl https://humdov-interview.onrender.com/users/2/feed  
 curl https://humdov-interview.onrender.com/users/3/feed
+```
+
+**Or use the interactive Swagger UI:**
+- Visit: https://humdov-interview.onrender.com/docs
+- Try the `/users/{user_id}/feed` endpoint with different user IDs
 ```
 
 ---
