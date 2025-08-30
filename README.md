@@ -19,9 +19,10 @@ $env:API_URL="https://humdov-interview.onrender.com"; python seed_data.py
 # Windows CMD:
 set API_URL=https://humdov-interview.onrender.com && python seed_data.py
 
+```
+
 - **Base URL:** [https://humdov-interview.onrender.com](https://humdov-interview.onrender.com)
 - **Interactive Docs (Swagger UI):** [https://humdov-interview.onrender.com/docs](https://humdov-interview.onrender.com/docs)
-```
 
 ---
 
