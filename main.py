@@ -34,7 +34,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Humdov Interview Test API", version="1.0.0", lifespan=lifespan)
 
-# endpoit to create ne user
+# endpoit to create new user
 @app.post("/users/", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 def create_user(user: UserCreate, db: Session = Depends(database.get_db)):
     # checking if username already exists

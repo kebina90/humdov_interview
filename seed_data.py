@@ -1,17 +1,23 @@
 import requests
 import os
+import time
 
 BASE_URL = os.getenv("API_URL", "http://localhost:8000")
 print(f"Using API URL: {BASE_URL}")
 
 def check_response(response, operation_name):
+    """Helper function to check if the request was successful and print debug info."""
     if response.status_code >= 200 and response.status_code < 300:
         print(f"✓ Success: {operation_name}")
         return response.json()
     else:
         print(f"✗ Failed: {operation_name}")
         print(f"  Status Code: {response.status_code}")
-        print(f"  Response: {response.text}")
+        #long html
+        if response.text and len(response.text) < 100:
+            print(f"  Response: {response.text}")
+        else:
+            print(f"  Response: [HTML content too long]")
         return None
 
 def create_sample_data():
@@ -19,7 +25,7 @@ def create_sample_data():
     users = []
     posts = []
 
-    # user
+    # Create Users
     user_data_list = [
         {"username": "Grace"},
         {"username": "John"},
@@ -31,8 +37,8 @@ def create_sample_data():
         user_result = check_response(response, f"Create user {user_data['username']}")
         if user_result:
             users.append(user_result)
+        time.sleep(1)
 
-    # posts
     post_data_list = [
         {"title": "The Power of Prayer", "content": "I've experienced amazing answers to prayer this week. God is faithful!", "tag": "prayer"},
         {"title": "Sunday Sermon Notes", "content": "Pastor's message on forgiveness really spoke to me today.", "tag": "sermon"},
@@ -51,22 +57,26 @@ def create_sample_data():
         post_result = check_response(response, f"Create post '{post_data['title']}'")
         if post_result:
             posts.append(post_result)
+        time.sleep(1) 
 
-    # likes
-    likes = [
-        (users[0]['id'], posts[0]['id']),
-        (users[0]['id'], posts[5]['id']),
-        (users[1]['id'], posts[2]['id']),
-        (users[1]['id'], posts[1]['id']),
-        (users[2]['id'], posts[8]['id']),
-        (users[2]['id'], posts[4]['id']),
-        (users[0]['id'], posts[3]['id']),
-        (users[1]['id'], posts[9]['id']),
-    ]
+    print(f"Successfully created {len(users)} users and {len(posts)} posts")
 
-    for user_id, post_id in likes:
-        response = requests.post(f"{BASE_URL}/users/{user_id}/like/{post_id}")
-        check_response(response, f"User {user_id} like post {post_id}")
+    
+    if len(users) >= 3 and len(posts) >= 6:
+        likes = [
+            (users[0]['id'], posts[0]['id']),
+            (users[0]['id'], posts[5]['id']),
+            (users[1]['id'], posts[2]['id']),
+            (users[1]['id'], posts[1]['id']),
+            (users[2]['id'], posts[4]['id']),  
+        ]
+
+        for user_id, post_id in likes:
+            response = requests.post(f"{BASE_URL}/users/{user_id}/like/{post_id}")
+            check_response(response, f"User {user_id} like post {post_id}")
+            time.sleep(0.5)
+    else:
+        print("Not enough users or posts created to set up likes")
 
     print("\nSeeding complete!")
     print("\nSample User IDs to test the personalized feed:")
